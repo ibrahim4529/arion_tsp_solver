@@ -44,4 +44,3 @@ def build_distance_matrix_by_address_name(start_address: str,
     request += '&key='+cfg.MAPS_API_KEY
     response = requests.get(request)
     return build_distance_by_response(response.json())  
-   

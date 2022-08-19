@@ -27,4 +27,4 @@ class ResponseOptimizeTsp(BaseModel):
     urutan_tujuan: List[Urutan]
     urutan: List[int]
     jarak: float
-    distance_matrix: List
+    distance_matrix: List[List[int]]
