@@ -23,7 +23,7 @@ def cacluate_tsp(request: RequestOptimize):
         if next_path > len(urutan)-1:
             next_path = 0
         list_urutan.append(Urutan(from_address=addresses[urutan[i]], to_addresses=addresses[urutan[next_path]], jarak=distance_matrix[urutan[i]][urutan[next_path]]))
-    return ResponseOptimizeTsp(urutan_tujuan=list_urutan, jarak=jarak, urutan=urutan)
+    return ResponseOptimizeTsp(urutan_tujuan=list_urutan, jarak=jarak, urutan=urutan, distance_matrix=distance_matrix.tolist())
 
 @app.get("/")
 def read_root():

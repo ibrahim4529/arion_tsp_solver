@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import List, Tuple
+from typing import Any, List, Tuple
 from pydantic import BaseModel
 
 class Methode(str, Enum):
@@ -27,3 +27,4 @@ class ResponseOptimizeTsp(BaseModel):
     urutan_tujuan: List[Urutan]
     urutan: List[int]
     jarak: float
+    distance_matrix: List
