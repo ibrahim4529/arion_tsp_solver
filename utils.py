@@ -8,7 +8,7 @@ from config import get_config
 cfg = get_config()
 
 def solve_using_annealing(graph, perturbation_scheme: str = "two_opt", alpha: float = 0.9) -> Tuple[List, float]:
-    return solve_tsp_simulated_annealing(graph, perturbation_scheme=perturbation_scheme, alpha=alpha)
+    return solve_tsp_simulated_annealing(graph, perturbation_scheme=perturbation_scheme, alpha=alpha, max_no_improvements=50)
 
 def solve_using_local_saerch(graph):
     return solve_tsp_local_search(graph)
