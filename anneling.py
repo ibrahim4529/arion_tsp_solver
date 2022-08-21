@@ -1,19 +1,15 @@
-from utils import build_distance_matrix_by_address_name
 import random
 import math
 
-distance_matrix  = build_distance_matrix_by_address_name(
-    start_address='Losari Kidul Cirebon',
-    destination_addresses=[
-        'Mulyasari Losari Cirebon',
-        'Panggang Sari Losari Cirebon',
-        'Barisan Losari Cirebon',
-    ]
-)
-
-def random_alternative(distance_matrix):
-    urutan_awal= list(range(len(distance_matrix)))
-    alternative_path = urutan_awal[1:]
+def random_alternative(current_urutan):
+    """ random alternative path 
+    @param distance_matrix: distance matrix
+    @return: alternative path
+    an alternative path is a random path start from first index 0 to length of distance matrix 
+    always start from first index 0 or first place in the path
+    return always [0, random number]
+    """
+    alternative_path = current_urutan[1:]
     random.shuffle(alternative_path)
     urutan = [0] + alternative_path
     return urutan
@@ -22,8 +18,8 @@ class Annealing:
     def __init__(self, distance_matrix):
         self.distance_matrix = distance_matrix
         # urutan start from 0
-        self.urutan = random_alternative(distance_matrix)
-        print(self.urutan)
+        list_of_place = list(range(len(distance_matrix)))
+        self.urutan = random_alternative(list_of_place)
         self.jarak = self.calculate_jarak()
 
     def calculate_jarak(self):
@@ -45,11 +41,12 @@ class Annealing:
         return jarak
     
     def annealing(self):
-        temp = 100
+        temp = 1000
         temp_min = 0.1
         alpha = 0.99
         while temp > temp_min:
-            new_urutan = random_alternative(self.distance_matrix)
+            new_urutan = self.urutan.copy()
+            new_urutan = random_alternative(new_urutan)
             new_jarak = self.calculate_jarak_new(new_urutan)
             delta = new_jarak - self.jarak
             if delta < 0:
@@ -62,9 +59,3 @@ class Annealing:
                     self.jarak = new_jarak
             temp *= alpha
         return self.urutan, self.jarak
-    
-
-anneling = Annealing(distance_matrix=distance_matrix)
-urutan, jarak = anneling.annealing()
-print(urutan)
-print(jarak)
