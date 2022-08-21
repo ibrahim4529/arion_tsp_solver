@@ -21,7 +21,7 @@ class RequestOptimize(BaseModel):
         "Cipadung Indramayu",
         "SMA N 1 Indramayu"
     ]
-    method: Methode = Methode.DP
+    method: Methode = Methode.ANNEALING
 
 class ResponseOptimizeTsp(BaseModel):
     urutan_tujuan: List[Urutan]

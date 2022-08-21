@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from schema import Methode, RequestOptimize, ResponseOptimizeTsp, Urutan
-from utils import build_distance_matrix_by_address_name, solve_using_annealing, solve_using_dp, solve_using_brute_force, solve_using_local_saerch
+from utils import build_distance_matrix_by_address_name, solve_using_anneling, solve_using_dp, solve_using_brute_force, solve_using_local_saerch
 app = FastAPI()
 
 
@@ -10,7 +10,7 @@ def cacluate_tsp(request: RequestOptimize):
     distance_matrix = build_distance_matrix_by_address_name(request.start_location, request.destination_locations)
     list_urutan = []
     if request.method == Methode.ANNEALING:
-        urutan, jarak = solve_using_annealing(distance_matrix)
+        urutan, jarak = solve_using_anneling(distance_matrix)
     elif request.method == Methode.DP:
         urutan, jarak =  solve_using_dp(distance_matrix)
     elif request.method == Methode.BRUTE_FORCE:
