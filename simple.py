@@ -1,4 +1,5 @@
 from utils import build_distance_matrix_by_address_name
+from anneling import Annealing
 
 distance_matrix  = build_distance_matrix_by_address_name(
     start_address='Losari Kidul Cirebon',
@@ -9,5 +10,8 @@ distance_matrix  = build_distance_matrix_by_address_name(
     ]
 )
 
-print(distance_matrix)
+annealing = Annealing(distance_matrix=distance_matrix)
+urutan, jarak = annealing.annealing()
+print(urutan)
+print(jarak)
  

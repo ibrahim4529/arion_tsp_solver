@@ -17,7 +17,7 @@ def cacluate_tsp(request: RequestOptimize):
         urutan, jarak  = solve_using_brute_force(distance_matrix)
     elif request.method == Methode.LOCAL_SAERCH:
         urutan, jarak = solve_using_local_saerch(distance_matrix)
-    
+    # [0, 1,2,3,4]
     for i, value in enumerate(urutan):
         next_path = i + 1
         if next_path > len(urutan)-1:
